@@ -1,0 +1,161 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-parchment: var(--parchment);
+  --color-parchment-deep: var(--parchment-deep);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-maroon: var(--maroon);
+  --color-maroon-deep: var(--maroon-deep);
+  --color-gold: var(--gold);
+  --color-seal: var(--seal);
+  --font-display: "IM Fell English", "EB Garamond", Georgia, serif;
+  --font-body: "EB Garamond", Georgia, serif;
+}
+
+:root {
+  --radius: 0.25rem;
+  --parchment: oklch(0.945 0.028 95);
+  --parchment-deep: oklch(0.915 0.035 92);
+  --ink: oklch(0.22 0.02 60);
+  --ink-soft: oklch(0.4 0.025 70);
+  --maroon: oklch(0.42 0.11 30);
+  --maroon-deep: oklch(0.36 0.1 28);
+  --gold: oklch(0.62 0.09 75);
+  --seal: oklch(0.5 0.08 45);
+  --background: var(--parchment);
+  --foreground: var(--ink);
+  --card: oklch(0.955 0.03 96);
+  --card-foreground: var(--ink);
+  --popover: var(--parchment);
+  --popover-foreground: var(--ink);
+  --primary: var(--maroon);
+  --primary-foreground: oklch(0.96 0.02 95);
+  --secondary: var(--parchment-deep);
+  --secondary-foreground: var(--ink);
+  --muted: var(--parchment-deep);
+  --muted-foreground: var(--ink-soft);
+  --accent: var(--parchment-deep);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.5 0.15 25);
+  --destructive-foreground: oklch(0.96 0.02 95);
+  --border: oklch(0.78 0.03 85);
+  --input: oklch(0.78 0.03 85);
+  --ring: var(--maroon);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    background-image: radial-gradient(
+        ellipse at 20% 10%,
+        oklch(0.96 0.03 96 / 0.7),
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse at 85% 90%,
+        oklch(0.9 0.03 90 / 0.6),
+        transparent 55%
+      );
+  }
+
+  ::selection {
+    background: var(--maroon);
+    color: var(--primary-foreground);
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .chapter-rule {
+    border-top: 1px solid var(--border);
+  }
+
+  .oval-frame {
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+  }
+
+  .seal-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 0 oklch(1 0 0 / 40%) inset,
+      0 12px 30px -18px oklch(0.3 0.03 60 / 35%);
+  }
+
+  .btn-maroon {
+    background: var(--maroon);
+    color: var(--primary-foreground);
+    border: 1px solid var(--maroon-deep);
+    transition: background 150ms ease;
+  }
+  .btn-maroon:hover {
+    background: var(--maroon-deep);
+  }
+
+  .btn-outline {
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    transition:
+      background 150ms ease,
+      color 150ms ease;
+  }
+  .btn-outline:hover {
+    background: var(--ink);
+    color: var(--parchment);
+  }
+
+  .drop-cap::first-letter {
+    font-family: var(--font-display);
+    font-size: 3.2em;
+    float: left;
+    line-height: 0.85;
+    padding-right: 0.12em;
+    color: var(--maroon);
+  }
+}
