@@ -9,7 +9,7 @@ import { NowView } from "../components/views/NowView";
 import { PrivacyView } from "../components/views/PrivacyView";
 import { DarkHookView } from "../components/views/DarkHookView";
 import { EverywhereView } from "../components/views/EverywhereView";
-import { BlindView } from "../components/views/BlindView";          // ⬅️ TAMBAH
+import { BlindView } from "../components/views/BlindView";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -39,11 +39,9 @@ function Index() {
   const renderBody = () => {
     switch (currentView) {
       case "market":
-        return <MarketView />;
+        return <MarketView onNavigate={setCurrentView} />;   // ⬅️ TAMBAH PROP
       case "trade":
         return <TradeView />;
-      case "darkhook":
-        return <DarkHookView onNavigate={setCurrentView} />;
       case "seal":
         return <SealView onNavigate={setCurrentView} />;
       case "now":
@@ -53,9 +51,9 @@ function Index() {
       case "everywhere":
         return <EverywhereView onNavigate={setCurrentView} />;
       case "blind":
-        return <BlindView onNavigate={setCurrentView} />;                                     // ⬅️ TAMBAH
-      // case "darkhook":
-      //   return <DarkHookView />;                                 // ⬅️ nanti kalau DarkHook udah ada
+        return <BlindView onNavigate={setCurrentView} />;
+      case "darkhook":
+        return <DarkHookView onNavigate={setCurrentView} />;
       case "home":
       default:
         return <HomeView />;

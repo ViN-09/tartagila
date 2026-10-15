@@ -123,3 +123,14 @@ export const EVERYWHERE_CTA = {
   lines: ["ONE CHAIN.", "ONE CROWD.", "ONE SHADOW."],
   sub: "Speak little. Prove everything.",
 };
+
+export const BUILDING_CTA = {
+  kicker: "Liber XX · The Invitation",
+  title: "Building on Robinhood Chain?",
+  body:
+    "If you run a wallet, DEX, payment app or launchpad and want private flows for your users, talk to us before the SDK ships.",
+  button: {
+    label: "Message us on X",
+    href: "https://x.com/tartagliatech",
+  },
+};

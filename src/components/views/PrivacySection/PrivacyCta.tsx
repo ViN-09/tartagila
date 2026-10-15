@@ -1,5 +1,7 @@
+import type { View } from "../../layout/Header";
+
 type PrivacyCtaProps = {
-  onNavigate?: (view: string) => void;
+  onNavigate?: ((view: View) => void) | undefined;
 };
 
 export function PrivacyCta({ onNavigate }: PrivacyCtaProps = {}) {
@@ -14,9 +16,7 @@ export function PrivacyCta({ onNavigate }: PrivacyCtaProps = {}) {
         Every layer ships when it's proven and audited.
       </p>
 
-      {/* 3 tombol */}
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-        {/* 1. Shield now — primary (maroon solid) */}
         <button
           onClick={() => onNavigate?.("trade")}
           className="btn-maroon rounded-sm px-5 py-2.5 text-sm"
@@ -24,18 +24,14 @@ export function PrivacyCta({ onNavigate }: PrivacyCtaProps = {}) {
           Shield now
         </button>
 
-        {/* 2. Dark Book — secondary (outline) */}
+        {/* ⬇️ UBAH INI — pindah ke DarkHookView */}
         <button
-          onClick={() => {
-            // TODO: arahkan ke Dark Book
-            console.log("Open Dark Book");
-          }}
+          onClick={() => onNavigate?.("darkhook")}
           className="btn-outline rounded-sm px-5 py-2.5 text-sm"
         >
           Dark Book
         </button>
 
-        {/* 3. Back to Tartaglia — secondary (outline) */}
         <button
           onClick={() => onNavigate?.("home")}
           className="btn-outline rounded-sm px-5 py-2.5 text-sm"

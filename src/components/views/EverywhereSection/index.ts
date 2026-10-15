@@ -5,6 +5,7 @@ export { OnePoolEveryApp } from "./OnePoolEveryApp";
 export { MarginaliaDiagram } from "./MarginaliaDiagram";
 export { FoundationsFirst } from "./FoundationsFirst";
 export { EveryAppFeedsFire } from "./EveryAppFeedsFire";
+export { BuildingCta } from "./BuildingCta";                    // ⬅️ TAMBAH
 export { EverywhereCta } from "./EverywhereCta";
 
 export type { Integration, FoundationStep, FeedStep, DiagramNode } from "./types";
@@ -19,5 +20,6 @@ export {
   FOUNDATIONS_FOOTNOTE,
   FEED_STEPS,
   FEED_DISCLAIMER,
+  BUILDING_CTA,                                                // ⬅️ TAMBAH
   EVERYWHERE_CTA,
 } from "./constants";

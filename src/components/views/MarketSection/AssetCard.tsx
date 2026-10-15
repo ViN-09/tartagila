@@ -1,7 +1,9 @@
 import type { LiveStock } from "./types";
+import type { View } from "../../layout/Header";
 
 type AssetCardProps = LiveStock & {
   onTrade?: () => void;
+  onNavigate?: ((view: View) => void) | undefined;
   isLive?: boolean;
 };
 
@@ -25,9 +27,16 @@ export function AssetCard({
   shieldedValueUsd,
   volume24hUsd,
   onTrade,
+  onNavigate,
   isLive = true,
 }: AssetCardProps) {
   const isPositive = changePercent >= 0;
+
+  // Gabung: custom handler + pindah view ke trade
+  const handleTrade = () => {
+    onTrade?.();
+    onNavigate?.("trade");
+  };
 
   return (
     <div className="group rounded-sm border border-border bg-card p-6 transition-colors hover:border-maroon/40">
@@ -86,7 +95,7 @@ export function AssetCard({
 
       {/* ACTION */}
       <button
-        onClick={onTrade}
+        onClick={handleTrade}
         className="mt-6 flex w-full items-center justify-center gap-2 rounded-sm bg-maroon px-4 py-3 text-sm font-semibold text-white transition hover:opacity-90 active:opacity-80"
       >
         Trade {symbol}

@@ -4,6 +4,7 @@ import {
   OnePoolEveryApp,
   FoundationsFirst,
   EveryAppFeedsFire,
+  BuildingCta,                          // ⬅️ TAMBAH
   EverywhereCta,
 } from "./EverywhereSection";
 import type { View } from "../layout/Header";
@@ -15,11 +16,12 @@ type EverywhereViewProps = {
 export function EverywhereView({ onNavigate }: EverywhereViewProps = {}) {
   return (
     <div className="min-h-screen">
-      <EverywhereHero />
+      <EverywhereHero onNavigate={onNavigate} />
       <PrivacyLaw />
       <OnePoolEveryApp />
       <FoundationsFirst onNavigate={onNavigate} />
       <EveryAppFeedsFire />
+      <BuildingCta />                    {/* ⬅️ TAMBAH */}
       <EverywhereCta onNavigate={onNavigate} />
     </div>
   );

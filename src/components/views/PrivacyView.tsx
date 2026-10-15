@@ -1,6 +1,6 @@
 import {
   PrivacyHero,
-  PrivacyStats,
+  PrivacyStats,          // ⬅️ mungkin gak dipake lagi (stat udah di hero)
   AlreadyDarkLayers,
   FourLeaksLayers,
   FurtherDarkLayers,
@@ -8,18 +8,23 @@ import {
   StandingOnGiants,
   PrivacyCta,
 } from "./PrivacySection";
+import type { View } from "../layout/Header";
 
-export function PrivacyView() {
+type PrivacyViewProps = {
+  onNavigate?: ((view: View) => void) | undefined;
+};
+
+export function PrivacyView({ onNavigate }: PrivacyViewProps = {}) {
   return (
     <div className="min-h-screen">
-      <PrivacyHero />
-      <PrivacyStats />
+      <PrivacyHero onNavigate={onNavigate} />              {/* ⬅️ PASS */}
+      {/* <PrivacyStats /> */}                              {/* ⬅️ COMMENT dulu, karena stat udah di hero */}
       <AlreadyDarkLayers />
       <FourLeaksLayers />
       <FurtherDarkLayers />
       <WhyEveryLayerCounts />
       <StandingOnGiants />
-      <PrivacyCta />
+      <PrivacyCta onNavigate={onNavigate} />
     </div>
   );
 }

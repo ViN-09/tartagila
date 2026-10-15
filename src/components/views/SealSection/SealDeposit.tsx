@@ -208,7 +208,7 @@ function DepositDiagram() {
 // ─────────────────────────────────────────────
 export function SealDeposit() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-16">
+    <section id="proof" className="mx-auto max-w-6xl px-6 py-16">
       {/* Kicker */}
       <p className="font-display text-sm uppercase tracking-[0.3em] text-seal">
         Liber XXI · The Deposit

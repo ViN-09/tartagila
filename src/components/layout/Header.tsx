@@ -151,6 +151,26 @@ export function Header({ currentView, onNavigate }: HeaderProps) {
           >
             Everywhere
           </button>
+
+          {/* Everywhere */}
+<button
+  onClick={() => onNavigate("everywhere")}
+  className={`hover:text-maroon ${
+    currentView === "everywhere" ? "text-maroon font-semibold" : ""
+  }`}
+>
+  Everywhere
+</button>
+
+{/* X — link eksternal (BARU) */}
+<a
+  href="https://x.com/tartagliatech"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="hover:text-maroon"
+>
+  X
+</a>
         </nav>
 
         <div className="flex items-center gap-3">

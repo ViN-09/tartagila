@@ -2,7 +2,7 @@ import { FEED_STEPS, FEED_DISCLAIMER } from "./constants";
 
 export function EveryAppFeedsFire() {
   return (
-    <section className="border-y border-border bg-background/50">
+    <section id="build"  className="border-y border-border bg-background/50">
       <div className="mx-auto max-w-4xl px-6 py-16">
         <h2 className="font-display text-3xl tracking-tight md:text-4xl">
           Every app <em className="text-maroon">feeds the fire.</em>

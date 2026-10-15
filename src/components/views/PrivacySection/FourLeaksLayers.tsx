@@ -4,7 +4,10 @@ import { LayerStatusBadge } from "./LayerStatusBadge";
 
 export function FourLeaksLayers() {
   return (
-    <section className="border-y border-border bg-background/50">
+    <section
+      id="stack"
+      className="border-y border-border bg-background/50 scroll-mt-24"
+    >
       <div className="mx-auto max-w-5xl px-6 py-16">
         {/* Kicker + Title */}
         <p className="font-display text-sm uppercase tracking-[0.3em] text-seal">

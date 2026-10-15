@@ -1,7 +1,12 @@
 import { AssetCard } from "./AssetCard";
 import { LIVE_STOCKS } from "./constants";
+import type { View } from "../../layout/Header";
 
-export function AlreadyDarkSection() {
+type AlreadyDarkSectionProps = {
+  onNavigate?: ((view: View) => void) | undefined;
+};
+
+export function AlreadyDarkSection({ onNavigate }: AlreadyDarkSectionProps = {}) {
   return (
     <section className="mx-auto max-w-6xl px-6 py-20">
       <h2 className="font-display text-3xl tracking-tight">
@@ -17,6 +22,7 @@ export function AlreadyDarkSection() {
           <AssetCard
             key={stock.symbol}
             {...stock}
+            onNavigate={onNavigate}
             onTrade={() => console.log(`Trade ${stock.symbol}`)}
           />
         ))}

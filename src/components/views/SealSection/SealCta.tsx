@@ -24,10 +24,10 @@ export function SealCta({ onNavigate }: SealCtaProps = {}) {
         </button>
 
         <button
-          onClick={() => console.log("Open Dark Book")}
+          onClick={() => onNavigate?.("privacy")}
           className="btn-outline rounded-sm px-5 py-2.5 text-sm"
         >
-          Dark Book
+          Privacy Stack
         </button>
 
         <button

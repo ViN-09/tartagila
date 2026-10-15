@@ -92,3 +92,43 @@ export const DARK_CRITERIA = [
     body: "Private-company tokens (e.g. OpenAI, SpaceX) are excluded from Waves 1 & 2 until secondary market depth provides verifiable pricing feeds.",
   },
 ];
+
+// Tipe event
+export type ListingEvent = {
+  date: string;         // "Sep 25, 2026"
+  symbol: string;       // "AAPL"
+  name: string;         // "Apple Inc."
+  description: string;  // "Asset registry entry activated..."
+  txHash: string;       // "0x19fbb347…4e908123"
+  txUrl: string;        // link ke explorer
+};
+
+export const LISTING_EVENTS: ListingEvent[] = [
+  {
+    date: "Sep 25, 2026",
+    symbol: "AAPL",
+    name: "Apple Inc.",
+    description:
+      "Asset registry entry activated. Shielded vault intake and midpoint Disfida settlement enabled.",
+    txHash: "0x19fbb347…4e908123",
+    txUrl: "https://robinhoodchain.blockscout.com/tx/0x78ab193aef4c1729da24823812cf8347104b2c158913b8e76cfa409391038167",   // ⬅️ ganti kalau ada URL asli
+  },
+  {
+    date: "Sep 25, 2026",
+    symbol: "TSLA",
+    name: "Tesla, Inc.",
+    description:
+      "Asset registry entry activated. Shielded vault intake and midpoint Disfida settlement enabled.",
+    txHash: "0x78ab193a…91038167",
+    txUrl: "https://robinhoodchain.blockscout.com/tx/0x78ab193aef4c1729da24823812cf8347104b2c158913b8e76cfa409391038167",
+  },
+  {
+    date: "Sep 25, 2026",
+    symbol: "NVDA",
+    name: "NVIDIA Corporation",
+    description:
+      "Asset registry entry activated. Shielded vault intake and midpoint Disfida settlement enabled.",
+    txHash: "0x4bf78d291…19ce92c1",
+    txUrl: "https://robinhoodchain.blockscout.com/tx/0x78ab193aef4c1729da24823812cf8347104b2c158913b8e76cfa409391038167",
+  },
+];

@@ -2,7 +2,7 @@ import { CLAIM_STEPS, CLAIM_DISCLAIMER } from "./constants";
 
 export function SealHowToClaim() {
   return (
-    <section className="border-y border-border bg-background/50">
+    <section id="rules"  className="border-y border-border bg-background/50">
       <div className="mx-auto max-w-6xl px-6 py-16">
         <h2 className="font-display text-3xl tracking-tight md:text-4xl">
           How to <em className="text-maroon">claim.</em>

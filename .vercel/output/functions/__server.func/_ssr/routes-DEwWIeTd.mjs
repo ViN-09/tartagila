@@ -1,7 +1,7 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tanstack__react-query.mjs";
 import { d as require_react_dom } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-Dih_SpQT.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-DEwWIeTd.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var import_react_dom = require_react_dom();
@@ -396,6 +396,18 @@ function Header({ currentView, onNavigate }) {
 							onClick: () => onNavigate("everywhere"),
 							className: `hover:text-maroon ${currentView === "everywhere" ? "text-maroon font-semibold" : ""}`,
 							children: "Everywhere"
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+							onClick: () => onNavigate("everywhere"),
+							className: `hover:text-maroon ${currentView === "everywhere" ? "text-maroon font-semibold" : ""}`,
+							children: "Everywhere"
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+							href: "https://x.com/tartagliatech",
+							target: "_blank",
+							rel: "noopener noreferrer",
+							className: "hover:text-maroon",
+							children: "X"
 						})
 					]
 				}),
@@ -959,8 +971,12 @@ function formatPrice$1(n) {
 		maximumFractionDigits: 2
 	});
 }
-function AssetCard({ symbol, name, price, changePercent, shieldedAmount, shieldedValueUsd, volume24hUsd, onTrade, isLive = true }) {
+function AssetCard({ symbol, name, price, changePercent, shieldedAmount, shieldedValueUsd, volume24hUsd, onTrade, onNavigate, isLive = true }) {
 	const isPositive = changePercent >= 0;
+	const handleTrade = () => {
+		onTrade?.();
+		onNavigate?.("trade");
+	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "group rounded-sm border border-border bg-card p-6 transition-colors hover:border-maroon/40",
 		children: [
@@ -1032,7 +1048,7 @@ function AssetCard({ symbol, name, price, changePercent, shieldedAmount, shielde
 				})]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-				onClick: onTrade,
+				onClick: handleTrade,
 				className: "mt-6 flex w-full items-center justify-center gap-2 rounded-sm bg-maroon px-4 py-3 text-sm font-semibold text-white transition hover:opacity-90 active:opacity-80",
 				children: [
 					"Trade ",
@@ -1476,7 +1492,33 @@ var DARK_CRITERIA = [
 		body: "Private-company tokens (e.g. OpenAI, SpaceX) are excluded from Waves 1 & 2 until secondary market depth provides verifiable pricing feeds."
 	}
 ];
-function AlreadyDarkSection() {
+var LISTING_EVENTS = [
+	{
+		date: "Sep 25, 2026",
+		symbol: "AAPL",
+		name: "Apple Inc.",
+		description: "Asset registry entry activated. Shielded vault intake and midpoint Disfida settlement enabled.",
+		txHash: "0x19fbb347…4e908123",
+		txUrl: "https://robinhoodchain.blockscout.com/tx/0x78ab193aef4c1729da24823812cf8347104b2c158913b8e76cfa409391038167"
+	},
+	{
+		date: "Sep 25, 2026",
+		symbol: "TSLA",
+		name: "Tesla, Inc.",
+		description: "Asset registry entry activated. Shielded vault intake and midpoint Disfida settlement enabled.",
+		txHash: "0x78ab193a…91038167",
+		txUrl: "https://robinhoodchain.blockscout.com/tx/0x78ab193aef4c1729da24823812cf8347104b2c158913b8e76cfa409391038167"
+	},
+	{
+		date: "Sep 25, 2026",
+		symbol: "NVDA",
+		name: "NVIDIA Corporation",
+		description: "Asset registry entry activated. Shielded vault intake and midpoint Disfida settlement enabled.",
+		txHash: "0x4bf78d291…19ce92c1",
+		txUrl: "https://robinhoodchain.blockscout.com/tx/0x78ab193aef4c1729da24823812cf8347104b2c158913b8e76cfa409391038167"
+	}
+];
+function AlreadyDarkSection({ onNavigate } = {}) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
 		className: "mx-auto max-w-6xl px-6 py-20",
 		children: [
@@ -1492,6 +1534,7 @@ function AlreadyDarkSection() {
 				className: "mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3",
 				children: LIVE_STOCKS.map((stock) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AssetCard, {
 					...stock,
+					onNavigate,
 					onTrade: () => console.log(`Trade ${stock.symbol}`)
 				}, stock.symbol))
 			})
@@ -1709,26 +1752,9 @@ function FullMarketTable() {
 		]
 	});
 }
-var EVENTS = [
-	{
-		time: "2h ago",
-		event: "TSLA admitted to shielded vault",
-		detail: "Wave 1 · Pool cap $5M · Chainlink TRV verified"
-	},
-	{
-		time: "1d ago",
-		event: "AAPL oracle staleness threshold set",
-		detail: "Threshold: 60s · Pauses on NYSE close"
-	},
-	{
-		time: "3d ago",
-		event: "NVDA first bilateral batch settled",
-		detail: "10s cadence · Midpoint $138.25"
-	}
-];
 function NewlyDarkSection() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
-		className: "mx-auto max-w-6xl px-6 py-20",
+		className: "mx-auto max-w-4xl px-6 py-20",
 		children: [
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
 				className: "font-display text-3xl tracking-tight",
@@ -1739,26 +1765,65 @@ function NewlyDarkSection() {
 				children: "Verified onchain listing and state transition events from the Tartaglia Notary contract."
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-				className: "mt-10 space-y-3",
-				children: EVENTS.map((e, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "flex items-start gap-4 rounded-sm border border-border bg-card px-5 py-4",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400 shadow-[0_0_6px] shadow-emerald-400" }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "mt-10 space-y-4",
+				children: LISTING_EVENTS.map((e, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("article", {
+					className: "rounded-sm border-2 border-border bg-background/40 p-5",
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex items-start gap-3",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-gold" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 							className: "flex-1",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-								className: "font-display text-base text-ink",
-								children: e.event
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-								className: "mt-0.5 text-xs text-ink-soft",
-								children: e.detail
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-							className: "shrink-0 text-xs text-ink-soft",
-							children: e.time
-						})
-					]
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h3", {
+									className: "font-display text-base leading-snug text-ink",
+									children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "text-ink-soft",
+											children: e.date
+										}),
+										" ",
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", {
+											className: "text-ink",
+											children: [
+												e.symbol,
+												" (",
+												e.name,
+												")"
+											]
+										}),
+										" ",
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "text-ink-soft",
+											children: "listed on Tartaglia"
+										})
+									]
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "mt-2 text-sm text-ink-soft",
+									children: e.description
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "mt-3 flex items-center gap-1.5 text-xs text-ink-soft",
+									children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "italic",
+											children: "Listing tx:"
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+											href: e.txUrl,
+											target: "_blank",
+											rel: "noopener noreferrer",
+											className: "font-mono underline decoration-border underline-offset-2 transition hover:text-maroon hover:decoration-maroon",
+											children: e.txHash
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "text-ink-soft",
+											children: "↗"
+										})
+									]
+								})
+							]
+						})]
+					})
 				}, i))
 			})
 		]
@@ -1802,16 +1867,58 @@ function HowItGoesDark() {
 		})
 	});
 }
-function MarketView() {
+function MarketCta({ onNavigate } = {}) {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+		className: "mx-auto max-w-6xl scroll-mt-24 px-6 py-24 text-center",
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
+				className: "font-display text-4xl leading-[1.1] tracking-tight md:text-5xl",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+						className: "block",
+						children: "Every stock you can hold,"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+						className: "block",
+						children: "you'll trade without"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+						className: "block",
+						children: "showing your hand."
+					})
+				]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "mt-8 flex flex-wrap items-center justify-center gap-3",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+					onClick: () => onNavigate?.("trade"),
+					className: "btn-maroon rounded-sm px-5 py-2.5 text-sm",
+					children: "Trade now"
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+					onClick: () => onNavigate?.("privacy"),
+					className: "btn-outline rounded-sm px-5 py-2.5 text-sm",
+					children: "Privacy Stack"
+				})]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+				className: "mx-auto mt-10 max-w-xl text-xs italic leading-relaxed text-ink-soft",
+				children: "Prices from Chainlink. Volume from Robinhood Chain DEX indexer. Onchain data only, not investment advice."
+			})
+		]
+	});
+}
+function MarketView({ onNavigate } = {}) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "min-h-screen",
 		children: [
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MarketHero, {}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(AlreadyDarkSection, {}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(AlreadyDarkSection, { onNavigate }),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScalingRoadmap, {}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FullMarketTable, {}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(NewlyDarkSection, {}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(HowItGoesDark, {})
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(HowItGoesDark, {}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MarketCta, { onNavigate }),
+			"              "
 		]
 	});
 }
@@ -2581,36 +2688,6 @@ var CLAIM_STEPS = [
 ];
 var CLAIM_ENTRIES = [];
 var CLAIM_DISCLAIMER = "Good-faith research that follows these rules won't be treated as an attack. Taking or moving funds that aren't yours is not research and is not covered. The bounty is paid by the team after verification; it is not something to be taken from the pool directly. One payout per issue.";
-function SealHero() {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
-		className: "mx-auto max-w-6xl px-6 pb-8 pt-16 md:pt-20",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-				className: "font-display text-sm uppercase tracking-[0.3em] text-seal",
-				children: [
-					"Bounty · ",
-					100,
-					" USDG"
-				]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-				className: "mt-1 text-sm text-ink-soft",
-				children: BOUNTY_NETWORK
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h1", {
-				className: "mt-8 max-w-3xl font-display text-5xl leading-[1.05] tracking-tight md:text-7xl",
-				children: ["BREAK THE ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("em", {
-					className: "text-maroon",
-					children: "SEAL."
-				})]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-				className: "mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft",
-				children: [100, " USDG sits sealed in the Notary. Prove our tech doesn't work, and it's yours."]
-			})
-		]
-	});
-}
 /**
 * Hitung durasi "unbroken" dari timestamp.
 * Return format: "6 days, 15 hours"
@@ -2641,6 +2718,79 @@ function formatUtc(d = /* @__PURE__ */ new Date()) {
 function shortenHash(hash, head = 10, tail = 6) {
 	if (hash.length <= head + tail + 3) return hash;
 	return `${hash.slice(0, head)}…${hash.slice(-tail)}`;
+}
+function SealHero() {
+	const [duration, setDuration] = (0, import_react.useState)(formatDuration(SEAL_STATUS.startedAtIso));
+	const [lastChecked, setLastChecked] = (0, import_react.useState)(SEAL_STATUS.lastCheckedUtc);
+	(0, import_react.useEffect)(() => {
+		const update = () => {
+			setDuration(formatDuration(SEAL_STATUS.startedAtIso));
+			setLastChecked(formatUtc());
+		};
+		update();
+		const timer = setInterval(update, 6e4);
+		return () => clearInterval(timer);
+	}, []);
+	const isIntact = SEAL_STATUS.isIntact;
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+		className: "mx-auto max-w-6xl px-6 pb-12 pt-16 md:pt-20",
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+				className: "font-display text-sm uppercase tracking-[0.3em] text-seal",
+				children: BOUNTY_NETWORK
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h1", {
+				className: "mt-8 max-w-3xl font-display text-5xl leading-[1.05] tracking-tight md:text-7xl",
+				children: ["BREAK THE ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("em", {
+					className: "text-maroon",
+					children: "SEAL."
+				})]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+				className: "mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft",
+				children: [100, " USDG sits sealed in the Notary. Prove our tech doesn't work, and it's yours."]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: `mt-8 max-w-2xl rounded-sm border px-5 py-4 ${isIntact ? "border-emerald-600/50 bg-emerald-500/5" : "border-red-600/50 bg-red-500/5"}`,
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "flex flex-wrap items-center gap-3",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+						className: "inline-flex items-center gap-2 rounded-sm border border-red-600/60 bg-red-500/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest text-red-400",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "inline-flex h-3 w-3 items-center justify-center rounded-sm bg-red-600 text-[8px] text-white",
+								children: "✓"
+							}),
+							"Seal ",
+							isIntact ? "Intact" : "Broken"
+						]
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+						className: "font-display text-sm italic text-ink",
+						children: ["Unbroken for ", duration]
+					})]
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+					className: "mt-3 text-xs text-ink-soft",
+					children: ["Last checked: ", lastChecked]
+				})]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "mt-8 flex flex-wrap items-center gap-3",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+					onClick: () => {
+						document.querySelector("#proof")?.scrollIntoView({ behavior: "smooth" });
+					},
+					className: "btn-outline rounded-sm px-5 py-2.5 text-sm",
+					children: "See the proof"
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+					onClick: () => {
+						document.querySelector("#rules")?.scrollIntoView({ behavior: "smooth" });
+					},
+					className: "btn-outline rounded-sm px-5 py-2.5 text-sm",
+					children: "Read the rules"
+				})]
+			})
+		]
+	});
 }
 function SealStatus() {
 	const [duration, setDuration] = (0, import_react.useState)(formatDuration(SEAL_STATUS.startedAtIso));
@@ -2884,6 +3034,7 @@ function DepositDiagram() {
 }
 function SealDeposit() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+		id: "proof",
 		className: "mx-auto max-w-6xl px-6 py-16",
 		children: [
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
@@ -2964,6 +3115,7 @@ function SealBreakConditions() {
 }
 function SealHowToClaim() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
+		id: "rules",
 		className: "border-y border-border bg-background/50",
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 			className: "mx-auto max-w-6xl px-6 py-16",
@@ -3058,9 +3210,9 @@ function SealCta({ onNavigate } = {}) {
 						children: "Shield now"
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-						onClick: () => console.log("Open Dark Book"),
+						onClick: () => onNavigate?.("privacy"),
 						className: "btn-outline rounded-sm px-5 py-2.5 text-sm",
-						children: "Dark Book"
+						children: "Privacy Stack"
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 						onClick: () => onNavigate?.("home"),
@@ -3111,37 +3263,80 @@ function NowView() {
 		})
 	});
 }
-function PrivacyHero() {
+function PrivacyHero({ onNavigate } = {}) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
-		className: "mx-auto max-w-6xl px-6 pb-8 pt-16 md:pt-20",
+		className: "mx-auto max-w-6xl px-6 pb-12 pt-16 md:pt-20",
 		children: [
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 				className: "font-display text-sm uppercase tracking-[0.3em] text-seal",
-				children: "Privacy Stack"
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-				className: "mt-1 text-sm text-ink-soft",
 				children: "Privacy Stack · Robinhood Chain mainnet"
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h1", {
 				className: "mt-8 max-w-3xl font-display text-5xl leading-[1.05] tracking-tight md:text-7xl",
-				children: ["WE GO FULLY ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("em", {
-					className: "text-maroon",
-					children: "DARK."
-				})]
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+						className: "block",
+						children: "WE GO"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+						className: "block",
+						children: "FULLY"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+						className: "block",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("em", {
+							className: "text-maroon",
+							children: "DARK."
+						})
+					})
+				]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 				className: "mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft",
 				children: "Shielding is live. Your balance no longer shows as yours. But four leaks still follow you around the pool: your gas, your transfers, your addresses, your amounts. We're closing all four."
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "mt-8 flex flex-wrap items-center gap-3",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+					onClick: () => {
+						document.querySelector("#stack")?.scrollIntoView({ behavior: "smooth" });
+					},
+					className: "btn-outline rounded-sm px-5 py-2.5 text-sm",
+					children: "See the stack"
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+					onClick: () => onNavigate?.("trade"),
+					className: "btn-maroon rounded-sm px-5 py-2.5 text-sm",
+					children: "Shield now"
+				})]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "mt-10 border-t border-border pt-5",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+					className: "text-xs text-ink-soft",
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+							className: "text-emerald-400",
+							children: "4"
+						}),
+						" layers live",
+						" · ",
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+							className: "text-gold",
+							children: "2"
+						}),
+						" building",
+						" · ",
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+							className: "text-seal",
+							children: "2"
+						}),
+						" in research"
+					]
+				})
 			})
 		]
 	});
 }
-var PRIVACY_STATS = {
-	live: 4,
-	building: 2,
-	research: 2
-};
 var ALREADY_DARK_LAYERS = [{
 	numeral: "I",
 	title: "Balance privacy",
@@ -3294,48 +3489,6 @@ var REFERENCES = [
 ];
 var GIANTS_FOOTNOTE = "What Tartaglia does differently: all four layers in one pool, built for tokenized stocks, native to Robinhood Chain, and wired directly into a dark pool. Shield, trade, transfer and withdraw without ever stepping into the light.";
 var GIANTS_DISCLAIMER = "Third-party names describe prior work. No partnership or endorsement is implied.";
-function PrivacyStats() {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
-		className: "mx-auto max-w-6xl px-6",
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "flex flex-wrap items-center gap-6 rounded-sm border border-border bg-background/40 px-5 py-4 text-sm",
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatItem, {
-					count: PRIVACY_STATS.live,
-					label: "layers live",
-					tone: "emerald"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Divider, {}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatItem, {
-					count: PRIVACY_STATS.building,
-					label: "building",
-					tone: "gold"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Divider, {}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StatItem, {
-					count: PRIVACY_STATS.research,
-					label: "in research",
-					tone: "seal"
-				})
-			]
-		})
-	});
-}
-function Divider() {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "hidden h-4 w-px bg-border sm:inline-block" });
-}
-function StatItem({ count, label, tone }) {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-		className: "inline-flex items-baseline gap-2",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-			className: `font-display text-2xl ${tone === "emerald" ? "text-emerald-400" : tone === "gold" ? "text-gold" : "text-seal"}`,
-			children: count
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-			className: "text-ink-soft",
-			children: label
-		})]
-	});
-}
 function LayerStatusBadge({ status }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
 		className: `inline-flex items-center gap-1.5 rounded-sm border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest ${{
@@ -3375,7 +3528,8 @@ function AlreadyDarkLayers() {
 }
 function FourLeaksLayers() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
-		className: "border-y border-border bg-background/50",
+		id: "stack",
+		className: "border-y border-border bg-background/50 scroll-mt-24",
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 			className: "mx-auto max-w-5xl px-6 py-16",
 			children: [
@@ -3631,9 +3785,7 @@ function PrivacyCta({ onNavigate } = {}) {
 						children: "Shield now"
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-						onClick: () => {
-							console.log("Open Dark Book");
-						},
+						onClick: () => onNavigate?.("darkhook"),
 						className: "btn-outline rounded-sm px-5 py-2.5 text-sm",
 						children: "Dark Book"
 					}),
@@ -3647,18 +3799,19 @@ function PrivacyCta({ onNavigate } = {}) {
 		]
 	});
 }
-function PrivacyView() {
+function PrivacyView({ onNavigate } = {}) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "min-h-screen",
 		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PrivacyHero, {}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PrivacyStats, {}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PrivacyHero, { onNavigate }),
+			"              ",
+			"                              ",
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(AlreadyDarkLayers, {}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FourLeaksLayers, {}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FurtherDarkLayers, {}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(WhyEveryLayerCounts, {}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StandingOnGiants$1, {}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PrivacyCta, {})
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PrivacyCta, { onNavigate })
 		]
 	});
 }
@@ -4415,32 +4568,62 @@ var EVERYWHERE_CTA = {
 	],
 	sub: "Speak little. Prove everything."
 };
-function EverywhereHero() {
+var BUILDING_CTA = {
+	kicker: "Liber XX · The Invitation",
+	title: "Building on Robinhood Chain?",
+	body: "If you run a wallet, DEX, payment app or launchpad and want private flows for your users, talk to us before the SDK ships.",
+	button: {
+		label: "Message us on X",
+		href: "https://x.com/tartagliatech"
+	}
+};
+function EverywhereHero({ onNavigate } = {}) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
-		className: "mx-auto max-w-6xl px-6 pb-8 pt-16 md:pt-20",
+		className: "mx-auto max-w-6xl px-6 pb-12 pt-16 md:pt-20",
 		children: [
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 				className: "font-display text-sm uppercase tracking-[0.3em] text-seal",
-				children: "Vision"
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-				className: "mt-1 text-sm text-ink-soft",
 				children: VISION_TAG
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h1", {
 				className: "mt-8 max-w-3xl font-display text-5xl leading-[1.05] tracking-tight md:text-7xl",
-				children: ["TARTAGLIA ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("em", {
-					className: "text-maroon",
-					children: "EVERYWHERE."
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+					className: "block",
+					children: "TARTAGLIA"
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+					className: "block",
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("em", {
+						className: "text-maroon",
+						children: "EVERYWHERE."
+					})
 				})]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 				className: "mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft",
 				children: "We're not building one private app. We're building the privacy layer for all of Robinhood Chain."
 			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-				className: "mt-6 max-w-2xl text-sm italic text-ink-soft",
-				children: VISION_NOTE
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "mt-8 flex flex-wrap items-center gap-3",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+					onClick: () => {
+						document.querySelector("#law")?.scrollIntoView({ behavior: "smooth" });
+					},
+					className: "btn-outline rounded-sm px-5 py-2.5 text-sm",
+					children: "Read the law"
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+					onClick: () => {
+						document.querySelector("#build")?.scrollIntoView({ behavior: "smooth" });
+					},
+					className: "btn-outline rounded-sm px-5 py-2.5 text-sm",
+					children: "Build with us"
+				})]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "mt-10 max-w-2xl border-t border-border pt-5",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+					className: "text-xs italic text-ink-soft",
+					children: VISION_NOTE
+				})
 			})
 		]
 	});
@@ -4549,6 +4732,7 @@ function CrowdVisualizer() {
 }
 function PrivacyLaw() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+		id: "law",
 		className: "mx-auto max-w-6xl px-6 py-16",
 		children: [
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
@@ -4761,6 +4945,7 @@ function FoundationsFirst({ onNavigate } = {}) {
 }
 function EveryAppFeedsFire() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
+		id: "build",
 		className: "border-y border-border bg-background/50",
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 			className: "mx-auto max-w-4xl px-6 py-16",
@@ -4790,6 +4975,34 @@ function EveryAppFeedsFire() {
 					children: FEED_DISCLAIMER
 				})
 			]
+		})
+	});
+}
+function BuildingCta() {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
+		className: "mx-auto max-w-6xl px-6 py-20",
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "grid gap-10 md:grid-cols-[200px_1fr] md:gap-16",
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+				className: "font-display text-sm uppercase tracking-[0.3em] text-seal md:text-right",
+				children: BUILDING_CTA.kicker
+			}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+					className: "max-w-2xl font-display text-3xl leading-tight tracking-tight md:text-5xl",
+					children: BUILDING_CTA.title
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+					className: "mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft",
+					children: BUILDING_CTA.body
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+					href: BUILDING_CTA.button.href,
+					target: "_blank",
+					rel: "noopener noreferrer",
+					className: "btn-maroon mt-8 inline-block rounded-sm px-5 py-2.5 text-sm",
+					children: BUILDING_CTA.button.label
+				})
+			] })]
 		})
 	});
 }
@@ -4835,11 +5048,13 @@ function EverywhereView({ onNavigate } = {}) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "min-h-screen",
 		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(EverywhereHero, {}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(EverywhereHero, { onNavigate }),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PrivacyLaw, {}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(OnePoolEveryApp, {}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FoundationsFirst, { onNavigate }),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(EveryAppFeedsFire, {}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(BuildingCta, {}),
+			"                    ",
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(EverywhereCta, { onNavigate })
 		]
 	});
@@ -5371,14 +5586,14 @@ function Index() {
 	const [currentView, setCurrentView] = (0, import_react.useState)("home");
 	const renderBody = () => {
 		switch (currentView) {
-			case "market": return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MarketView, {});
+			case "market": return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MarketView, { onNavigate: setCurrentView });
 			case "trade": return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TradeView, {});
-			case "darkhook": return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DarkHookView, { onNavigate: setCurrentView });
 			case "seal": return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SealView, { onNavigate: setCurrentView });
 			case "now": return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(NowView, {});
 			case "privacy": return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PrivacyView, { onNavigate: setCurrentView });
 			case "everywhere": return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(EverywhereView, { onNavigate: setCurrentView });
 			case "blind": return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BlindView, { onNavigate: setCurrentView });
+			case "darkhook": return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DarkHookView, { onNavigate: setCurrentView });
 			default: return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(HomeView, {});
 		}
 	};
